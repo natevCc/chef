@@ -1,1 +1,130 @@
 @import "tailwindcss";
+
+html,
+body {
+  /* let the page grow; we only need a minimum viewport height */
+  min-height: 100%;
+}
+body {
+  background-color: rgb(5, 5, 5);
+  margin: 0;
+  /* font-family: "Courier New", Courier, monospace; */
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+@theme {
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #e5e5e5;
+  --color-gray-300: #d4d4d4;
+  --color-gray-400: #a3a3a3;
+  --color-gray-500: #737373;
+  --color-gray-600: #525252;
+  --color-gray-700: #404040;
+  --color-gray-800: #262626;
+  --color-gray-900: #171717;
+  --color-gray-950: #151515;
+  --color-gray-970: #101010;
+}
+
+@layer base {
+  body {
+    @apply text-white;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl font-semibold mb-3;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl font-semibold mb-3;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl font-semibold mb-3;
+  }
+
+  h5 {
+    @apply md:text-lg mb-2;
+  }
+
+  button,
+  input,
+  textarea,
+  a {
+    @apply transition-all focus-visible:outline-amber-300 focus-visible:shadow-amber-400/40 focus:shadow-lg  focus-visible:border-amber-300  focus-visible:ring-amber-300;
+  }
+}
+
+ul,
+ol {
+  margin: 0.5rem 0 0.5rem 1rem;
+  padding-left: 1rem;
+  list-style-position: outside;
+}
+ul {
+  list-style-type: disc;
+}
+ol {
+  list-style-type: decimal;
+}
+ul ul {
+  list-style-type: circle;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+ul ul ul {
+  list-style-type: square;
+}
+ol ol {
+  list-style-type: lower-alpha;
+}
+li {
+  margin: 0.25rem 0;
+}
+li > p {
+  margin: 0.25rem 0;
+}
+
+/* ul > li {
+  margin-left: 1rem;
+} */
+
+.drag-none {
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 0s 600000s, color 0s 600000s !important;
+}
+
+.common-fade-in {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.32);
+}
+
+.modal-backdrop-blur {
+  backdrop-filter: blur(3px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
