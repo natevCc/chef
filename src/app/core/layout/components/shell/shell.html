@@ -1,0 +1,66 @@
+<nav
+  class="fixed top-0 inset-x-0 h-14 border-b border-gray-800 bg-gray-970 z-[60]"
+>
+  <div class="h-full px-3 md:px-4 flex items-center gap-2">
+    <!-- Sidebar toggle / mobile drawer toggle -->
+    <button
+      type="button"
+      class="inline-flex items-center justify-center rounded-xl text-yellow-200 px-2.5 py-2 text-sm hover:cursor-pointer active:scale-[0.99] transition md:mr-1"
+      (click)="toggleSidebar()"
+      aria-label="Toggle sidebar"
+      [attr.aria-expanded]="isMobile() ? mobileMenuOpen() : !collapsed()"
+      aria-controls="app-shell-sidebar"
+    >
+      <!-- Hamburger icon -->
+      @if (isMobile()) {
+        <lucide-icon [img]="menuIcon" />
+      } @else {
+        <!-- Rail expand/collapse icon -->
+        @if (!collapsed()) {
+          <lucide-icon [img]="leftIcon" />
+        } @else {
+          <lucide-icon [img]="rightIcon" />
+        }
+      }
+    </button>
+
+    <!-- Projected navbar content -->
+    <div class="flex-1 min-w-0">
+      <ng-content select="[navbar]"></ng-content>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile backdrop -->
+@if (isMobile() && mobileMenuOpen()) {
+  <div
+    class="fixed inset-0 bg-black/35 backdrop-blur-[1px] z-50 md:hidden"
+    (click)="closeMobile()"
+    aria-hidden="true"
+  ></div>
+}
+
+<aside
+  id="app-shell-sidebar"
+  class="fixed left-0 top-14 bottom-0 border-r bg-gray-970 border-gray-800 z-[55] translate-x-0 transition-transform md:transition-[width] duration-300 ease-in-out overflow-hidden"
+  [class.w-17]="!isMobile() && collapsed()"
+  [class.w-64]="isMobile() || (!isMobile() && !collapsed())"
+  [class.-translate-x-full]="isMobile() && !mobileMenuOpen()"
+  [class.translate-x-0]="isMobile() && mobileMenuOpen()"
+  aria-label="Sidebar"
+>
+  <div class="h-full overflow-y-auto overscroll-contain p-3 md:p-3">
+    <ng-content select="[sidebar]"></ng-content>
+  </div>
+</aside>
+
+<!-- Main content wrapper -->
+<main
+  class="pt-14 transition-[margin] duration-300 ease-in-out min-h-screen"
+  [class.md:ml-16]="!isMobile() && collapsed()"
+  [class.md:ml-64]="!isMobile() && !collapsed()"
+>
+  <div class="p-4 md:p-6">
+    <ng-content></ng-content>
+  </div>
+</main>

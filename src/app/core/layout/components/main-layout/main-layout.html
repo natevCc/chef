@@ -1,0 +1,20 @@
+<app-shell>
+  <div navbar class="flex items-center gap-3">
+    <!-- <div class="font-semibold truncate">WebGL Hub</div> -->
+    <img
+      class="h-14 relative bottom-2 drag-none cursor-pointer"
+      src="/assets/images/limongl-logo-full.png"
+      alt=""
+      [routerLink]="['/']"
+    />
+    <div class="ml-auto flex items-center gap-2"></div>
+  </div>
+
+  <nav sidebar class="flex flex-col gap-1">
+    @for (btnData of sidebarButtons(); track btnData.label) {
+    <app-sidebar-button [data]="btnData" />
+    }
+  </nav>
+
+  <router-outlet />
+</app-shell>

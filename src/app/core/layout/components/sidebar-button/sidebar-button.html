@@ -1,0 +1,20 @@
+<a
+  [routerLink]="data().navigateTo"
+  routerLinkActive
+  (isActiveChange)="onActiveChange($event)"
+  class="cursor-pointer"
+>
+  <div
+    class="rounded-lg flex gap-2 w-full h-10 font-semibold items-center px-3 py-2 transition-colors duration-200"
+    [class]="
+      isActive()
+        ? 'bg-amber-400 text-gray-900 hover:bg-amber-300'
+        : 'hover:bg-gray-800'
+    "
+  >
+    <lucide-icon [strokeWidth]="3" [size]="18" [img]="data().icon" />
+    <span class="whitespace-nowrap" [class]="{ hidden: showText() }">
+      {{ data().label }}
+    </span>
+  </div>
+</a>
